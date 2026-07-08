@@ -75,3 +75,77 @@ void StudentManager::viewStudents()
         cout << "--------------------------\n";
     }
 }
+void StudentManager::searchStudent()
+{
+    int id;
+    cout << "\nEnter Student ID to Search: ";
+    cin >> id;
+
+    for (Student s : students)
+    {
+        if (s.id == id)
+        {
+            cout << "\nStudent Found\n";
+            cout << "ID: " << s.id << endl;
+            cout << "Name: " << s.name << endl;
+            cout << "Age: " << s.age << endl;
+            cout << "Course: " << s.course << endl;
+            return;
+        }
+    }
+
+    cout << "\nStudent Not Found!\n";
+}
+
+void StudentManager::updateStudent()
+{
+    int id;
+
+    cout << "\nEnter Student ID to Update: ";
+    cin >> id;
+
+    for (Student &s : students)
+    {
+        if (s.id == id)
+        {
+            cout << "Enter New Name: ";
+            cin >> s.name;
+
+            cout << "Enter New Age: ";
+            cin >> s.age;
+
+            cout << "Enter New Course: ";
+            cin >> s.course;
+
+            saveToFile();
+
+            cout << "\nStudent Updated Successfully!\n";
+            return;
+        }
+    }
+
+    cout << "\nStudent Not Found!\n";
+}
+
+void StudentManager::deleteStudent()
+{
+    int id;
+
+    cout << "\nEnter Student ID to Delete: ";
+    cin >> id;
+
+    for (int i = 0; i < students.size(); i++)
+    {
+        if (students[i].id == id)
+        {
+            students.erase(students.begin() + i);
+
+            saveToFile();
+
+            cout << "\nStudent Deleted Successfully!\n";
+            return;
+        }
+    }
+
+    cout << "\nStudent Not Found!\n";
+}

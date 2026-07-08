@@ -4,7 +4,6 @@
 void StudentManager::loadFromFile()
 {
     students.clear();
-
     ifstream file("students.txt");
 
     if (!file)
